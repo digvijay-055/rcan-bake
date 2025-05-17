@@ -443,7 +443,4 @@ app.listen(PORT, () => {
     console.log(`  DELETE /api/products/:id (to delete a product)`);
     console.log(`  POST   /api/cart/add`);
     console.log(`  POST   /api/orders`);
-}).catch(err => {
-    console.error(`[${new Date().toISOString()}] Failed to load products before starting server:`, err);
-    process.exit(1);
 });
