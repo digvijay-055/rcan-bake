@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping & Returns - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-primary-beige { color: #F5F5DC; }
+        .bg-secondary-brown { background-color: #7B3F00; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        .border-secondary-brown { border-color: #7B3F00; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+        .content-section h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: #7B3F00; margin-bottom: 1rem; margin-top: 1.5rem;}
+        .content-section p { margin-bottom: 1rem; line-height: 1.75; }
+        .content-section ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .content-section a { color: #7B3F00; text-decoration: underline; }
+        .content-section a:hover { color: #653000; }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown">Home</a>
+                    <a href="cookies.html" class="text-gray-700 hover:text-secondary-brown">Our Cookies</a>
+                    <a href="about.html" class="text-gray-700 hover:text-secondary-brown">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown">Contact</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-secondary-brown">
+                        <i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav" class="ml-1">(0)</span>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8">
+                 <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button>
+            </div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="mb-8">
+            <nav class="text-sm" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center"><a href="index.html" class="text-gray-600 hover:text-secondary-brown">Home</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li>
+                    <li class="text-secondary-brown">Shipping & Returns Policy</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg content-section">
+            <h1 class="text-4xl md:text-5xl font-playfair text-center text-secondary-brown mb-10">Shipping & Returns Policy</h1>
+            
+            <p><strong>Last Updated:</strong> May 17, 2025</p>
+
+            <h2>Shipping Policy</h2>
+            <p>At Rcan Bakes, we are committed to delivering our freshly baked cookies to you in the best possible condition. We currently operate out of Gurugram, Haryana, India.</p>
+            
+            <h3>Delivery Areas</h3>
+            <p>Currently, we deliver within a [Specify Radius, e.g., 10-15 km] radius of [Specify Your Base Location in Gurugram, e.g., Sector 45], Gurugram. You can verify if your location is within our delivery zone by entering your pincode during the checkout process. We are continuously working to expand our delivery reach.</p>
+
+            <h3>Delivery Times</h3>
+            <p>Since all our cookies are baked fresh to order, please allow [Specify Time, e.g., 24-48 hours] for order processing and preparation before dispatch. Once dispatched, delivery within Gurugram is typically completed on the same day or the next working day.</p>
+            <p>Our standard delivery days are [Specify Days, e.g., Monday to Saturday], excluding public holidays. We will notify you once your order is out for delivery. While we strive to meet specific delivery time requests (mentioned in order notes), these are not guaranteed and depend on our delivery schedule and routes.</p>
+
+            <h3>Shipping Charges</h3>
+            <p>A flat delivery fee of ₹[Specify Amount, e.g., 50] is applicable on all orders within our delivery zone.</p>
+            <p>We offer FREE delivery for orders above ₹[Specify Amount, e.g., 500].</p>
+            <p>(These are dummy values. Please set your actual charges.)</p>
+
+            <h3>Packaging</h3>
+            <p>Our cookies are carefully packaged in food-safe, robust boxes designed to maintain freshness and prevent damage during transit. We recommend consuming them within [Specify Days, e.g., 3-4 days] of receipt for the best taste experience.</p>
+
+            <h3>Order Tracking</h3>
+            <p>Once your order is dispatched, we will [Specify How You Notify, e.g., send you an email/SMS with tracking information if available, or simply notify that it's out for delivery]. For any queries regarding your order status, please contact us at [Your Contact Email/Phone].</p>
+
+            <h2>Returns, Refunds & Cancellation Policy</h2>
+            
+            <h3>Returns & Refunds</h3>
+            <p>Due to the perishable nature of our freshly baked cookies, we generally **do not accept returns or offer refunds** once an order has been successfully delivered. We ensure that all our products meet high-quality standards before dispatch.</p>
+            <p>However, if you receive an incorrect order or if the products are damaged upon arrival (e.g., box significantly crushed affecting the product), please contact us within [Specify Time, e.g., 4 hours] of delivery with photographic evidence of the damage or incorrect item. We will review your case and, at our discretion, may offer a replacement or a refund.</p>
+            <p>To be eligible for a consideration, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
+
+            <h3>Cancellations</h3>
+            <p>If you wish to cancel your order, please contact us as soon as possible at [Your Contact Email/Phone].</p>
+            <ul>
+                <li>Orders can be cancelled free of charge if the cancellation request is received before your order has started a_blank_processing (typically within [Specify Time, e.g., 2-4 hours] of placing the order).</li>
+                <li>If the order is already in a_blank_processing or has been dispatched, cancellation may not be possible, or a cancellation fee may apply.</li>
+            </ul>
+            <p>We reserve the right to cancel any order if we are unable to fulfill it due to unforeseen circumstances (e.g., ingredient unavailability, operational issues). In such cases, a full refund will be processed.</p>
+
+            <h2>Contact Us</h2>
+            <p>For any questions related to shipping, returns, or cancellations, please contact us:</p>
+            <p>
+                Rcan Bakes<br>
+                Gurugram, Haryana, India<br>
+                Email: [Your Email Address - e.g., orders@rcanbakes.com]<br>
+                Phone: [Your Phone Number - e.g., +91 98xxxxxxx0]
+            </p>
+            <p class="mt-6 italic">Please customize all placeholder text (e.g., delivery radius, processing times, charges, contact details) to accurately reflect your business operations. This policy is a template and should be reviewed by a legal professional if you have specific concerns or require comprehensive legal coverage.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4>
+                    <p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li>
+                        <li><a href="about.html" class="hover:text-white">Our Story</a></li>
+                        <li><a href="faq.html" class="hover:text-white">FAQs</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="terms-conditions.html" class="hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="shipping-returns.html" class="hover:text-white">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="cart-logic.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+        if (mobileMenuButton && mobileMenu && mobileMenuCloseButton) {
+            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-closed'); mobileMenu.classList.add('menu-open'); });
+            mobileMenuCloseButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); });
+            navLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); }); });
+        }
+        // Initialize cart count display on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateSharedCartCountDisplay === 'function') {
+                updateSharedCartCountDisplay();
+            }
+        });
+    </script>
+</body>
+</html>

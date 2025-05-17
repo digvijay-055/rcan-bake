@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-primary-beige { color: #F5F5DC; }
+        .bg-secondary-brown { background-color: #7B3F00; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        .border-secondary-brown { border-color: #7B3F00; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-item.accordion-open .accordion-content { max-height: 500px; /* Adjust as needed */ }
+        .accordion-item.accordion-open .accordion-icon { transform: rotate(180deg); }
+        .accordion-icon { transition: transform 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Home</a>
+                    <a href="cookies.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Our Cookies</a>
+                    <a href="about.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Contact</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">
+                        <i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav" class="ml-1">(0)</span>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8">
+                 <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button>
+            </div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="mb-8">
+            <nav class="text-sm" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center"><a href="index.html" class="text-gray-600 hover:text-secondary-brown">Home</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li>
+                    <li class="text-secondary-brown">Frequently Asked Questions</li>
+                </ol>
+            </nav>
+        </div>
+
+        <h1 class="text-4xl font-playfair text-center text-secondary-brown mb-10">Frequently Asked Questions</h1>
+        
+        <div class="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <div class="space-y-6">
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">How do I place an order?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>Placing an order is easy! Simply browse our selection of cookies on the "<a href='cookies.html' class='text-secondary-brown hover:underline'>Our Cookies</a>" page. Click on your desired cookies, select the quantity, and click "Add to Cart". Once you're ready, go to your <a href='cart.html' class='text-secondary-brown hover:underline'>cart</a> and click "Proceed to Checkout". Follow the steps to enter your shipping and payment information.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">What are your delivery areas in Gurugram?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>We currently deliver within a 10km radius of Sector 45, Gurugram (Dummy information - please replace with actual details). You can check if your area is covered during the checkout process by entering your pincode. We are working on expanding our delivery zones!</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">What are the delivery charges?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>We offer a flat delivery fee of ₹50 on all orders within our delivery zone. Enjoy free delivery on orders above ₹500! (Dummy information - please replace with actual details).</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">How long will my order take to arrive?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>Since our cookies are baked fresh to order, we typically prepare and dispatch them within 24-48 hours. Delivery times may vary based on your location within Gurugram. We will provide an estimated delivery window once your order is confirmed. For specific delivery time requests, please mention them in the delivery notes during checkout, and we'll do our best to accommodate.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>We accept various payment methods including UPI (PayTM, Google Pay, PhonePe, etc.), Credit/Debit Cards, and Net Banking through our secure payment gateway. We also offer Cash on Delivery (COD) for your convenience (subject to availability in your area).</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">How should I store the cookies for best freshness?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>For maximum freshness, store your Rcan Bakes cookies in an airtight container at room temperature. They are best enjoyed within 3-4 days of delivery. You can also refrigerate them for up to a week. To enjoy a warm, freshly-baked feel, you can microwave them for 5-10 seconds before serving (be careful, they might be hot!).</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-b border-gray-200 pb-4">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">Do you use preservatives in your cookies?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>No, at Rcan Bakes, we pride ourselves on using fresh, high-quality ingredients without any artificial preservatives. This is why our cookies have a shorter shelf life compared to commercially produced ones, but taste so much better!</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-header w-full flex justify-between items-center text-left py-3 focus:outline-none">
+                        <span class="text-lg font-semibold text-gray-800">Do you take bulk orders or custom requests for events?</span>
+                        <i class="fas fa-chevron-down accordion-icon text-secondary-brown"></i>
+                    </button>
+                    <div class="accordion-content pt-2 text-gray-600 leading-relaxed">
+                        <p>Yes, we do! We'd love to be a part of your special occasions. For bulk orders for parties, corporate events, or any special celebration, or if you have custom cookie requests (e.g., specific shapes, decorations, eggless options, gift packaging), please <a href="contact.html" class="text-secondary-brown hover:underline">contact us</a> directly. We'd be happy to discuss your requirements and provide a quote. Please allow sufficient lead time for bulk or custom orders.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-10 text-center text-gray-600">
+                Can't find the answer you're looking for? <a href="contact.html" class="text-secondary-brown hover:underline font-semibold">Contact us</a> and we'll be happy to help!
+            </p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4>
+                    <p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li>
+                        <li><a href="about.html" class="hover:text-white">Our Story</a></li>
+                        <li><a href="faq.html" class="hover:text-white">FAQs</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart-logic.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+        if (mobileMenuButton && mobileMenu && mobileMenuCloseButton) {
+            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-closed'); mobileMenu.classList.add('menu-open'); });
+            mobileMenuCloseButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); });
+            navLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); }); });
+        }
+
+        // Accordion functionality
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            if (header) {
+                header.addEventListener('click', () => {
+                    // Optional: Close other open accordions
+                    // document.querySelectorAll('.accordion-item.accordion-open').forEach(openItem => {
+                    //     if (openItem !== item) {
+                    //         openItem.classList.remove('accordion-open');
+                    //     }
+                    // });
+                    item.classList.toggle('accordion-open');
+                });
+            }
+        });
+        
+        // Initialize cart count display on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateSharedCartCountDisplay === 'function') {
+                updateSharedCartCountDisplay();
+            }
+        });
+    </script>
+</body>
+</html>

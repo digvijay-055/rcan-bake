@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-primary-beige { color: #F5F5DC; }
+        .bg-secondary-brown { background-color: #7B3F00; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        .border-secondary-brown { border-color: #7B3F00; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem; 
+            border-width: 1px;
+            border-color: #D1D5DB; 
+            border-radius: 0.375rem; 
+        }
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #7B3F00; 
+            border-color: #7B3F00;
+        }
+        .error-message {
+            color: #EF4444; 
+            font-size: 0.875rem; 
+            margin-top: 0.25rem; 
+        }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown">Home</a>
+                    <a href="cookies.html" class="text-gray-700 hover:text-secondary-brown">Our Cookies</a>
+                    <a href="about.html" class="text-gray-700 hover:text-secondary-brown">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown">Contact</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-secondary-brown">
+                        <i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav" class="ml-1">(0)</span>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8">
+                 <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button>
+            </div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 sm:px-6 py-12">
+        <div class="mb-8">
+            <nav class="text-sm" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center"><a href="index.html" class="text-gray-600 hover:text-secondary-brown">Home</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li>
+                    <li class="flex items-center"><a href="cart.html" class="text-gray-600 hover:text-secondary-brown">Shopping Cart</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li>
+                    <li class="text-secondary-brown">Checkout</li>
+                </ol>
+            </nav>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-playfair text-center text-secondary-brown mb-10">Checkout</h1>
+
+        <div class="lg:flex lg:space-x-8 xl:space-x-12">
+            <div class="lg:w-2/3 bg-white p-6 md:p-8 rounded-lg shadow-lg mb-10 lg:mb-0">
+                <form id="checkoutForm" novalidate>
+                    <section class="mb-8">
+                        <h2 class="text-2xl font-playfair text-secondary-brown mb-6 border-b pb-2">1. Shipping Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" name="fullName" id="fullName" required class="form-input">
+                                <p class="error-message hidden" id="fullNameError">Full name is required.</p>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" name="email" id="email" required class="form-input">
+                                <p class="error-message hidden" id="emailError">Please enter a valid email.</p>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
+                                <input type="tel" name="phone" id="phone" required class="form-input" pattern="[0-9]{10}">
+                                <p class="error-message hidden" id="phoneError">Please enter a valid 10-digit phone number.</p>
+                            </div>
+                             <div>
+                                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Street Address <span class="text-red-500">*</span></label>
+                                <input type="text" name="address" id="address" required class="form-input">
+                                <p class="error-message hidden" id="addressError">Street address is required.</p>
+                            </div>
+                            <div>
+                                <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City <span class="text-red-500">*</span></label>
+                                <input type="text" name="city" id="city" value="Gurugram" required class="form-input">
+                                <p class="error-message hidden" id="cityError">City is required.</p>
+                            </div>
+                            <div>
+                                <label for="pincode" class="block text-sm font-medium text-gray-700 mb-1">Pincode <span class="text-red-500">*</span></label>
+                                <input type="text" name="pincode" id="pincode" required class="form-input" pattern="[0-9]{6}">
+                                <p class="error-message hidden" id="pincodeError">Please enter a valid 6-digit pincode.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label for="deliveryNotes" class="block text-sm font-medium text-gray-700 mb-1">Delivery Notes (Optional)</label>
+                            <textarea name="deliveryNotes" id="deliveryNotes" rows="3" class="form-input" placeholder="e.g., Call before delivery, leave at reception"></textarea>
+                        </div>
+                    </section>
+
+                    <section class="mb-8">
+                        <h2 class="text-2xl font-playfair text-secondary-brown mb-6 border-b pb-2">2. Billing Information</h2>
+                        <div class="flex items-center mb-4">
+                            <input id="sameAsShipping" name="sameAsShipping" type="checkbox" checked class="h-4 w-4 text-secondary-brown border-gray-300 rounded focus:ring-secondary-brown">
+                            <label for="sameAsShipping" class="ml-2 block text-sm text-gray-900">Same as shipping address</label>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-playfair text-secondary-brown mb-6 border-b pb-2">3. Payment Method <span class="text-red-500">*</span></h2>
+                        <div class="space-y-4" id="paymentMethodGroup">
+                            <div class="flex items-center p-3 border rounded-md hover:border-secondary-brown cursor-pointer has-[:checked]:border-secondary-brown has-[:checked]:ring-2 has-[:checked]:ring-secondary-brown">
+                                <input id="payment_upi" name="paymentMethod" type="radio" value="upi" checked class="h-4 w-4 text-secondary-brown border-gray-300 focus:ring-secondary-brown">
+                                <label for="payment_upi" class="ml-3 block text-sm font-medium text-gray-700 flex-grow cursor-pointer">UPI (PayTM, Google Pay, PhonePe, etc.)</label>
+                                <img src="https://placehold.co/100x25/CCCCCC/7B3F00?text=UPI+Logos" alt="UPI" class="h-6 ml-auto">
+                            </div>
+                            <div class="flex items-center p-3 border rounded-md hover:border-secondary-brown cursor-pointer has-[:checked]:border-secondary-brown has-[:checked]:ring-2 has-[:checked]:ring-secondary-brown">
+                                <input id="payment_card" name="paymentMethod" type="radio" value="card" class="h-4 w-4 text-secondary-brown border-gray-300 focus:ring-secondary-brown">
+                                <label for="payment_card" class="ml-3 block text-sm font-medium text-gray-700 flex-grow cursor-pointer">Credit/Debit Card (Simulated)</label>
+                                 <img src="https://placehold.co/100x25/CCCCCC/7B3F00?text=Card+Logos" alt="Cards" class="h-6 ml-auto">
+                            </div>
+                            <div class="flex items-center p-3 border rounded-md hover:border-secondary-brown cursor-pointer has-[:checked]:border-secondary-brown has-[:checked]:ring-2 has-[:checked]:ring-secondary-brown">
+                                <input id="payment_cod" name="paymentMethod" type="radio" value="cod" class="h-4 w-4 text-secondary-brown border-gray-300 focus:ring-secondary-brown">
+                                <label for="payment_cod" class="ml-3 block text-sm font-medium text-gray-700 flex-grow cursor-pointer">Cash on Delivery (COD)</label>
+                            </div>
+                        </div>
+                        <p class="error-message hidden" id="paymentMethodError">Please select a payment method.</p>
+                    </section>
+                </form>
+            </div>
+
+            <div class="lg:w-1/3">
+                <div class="bg-white p-6 rounded-lg shadow-lg sticky top-28">
+                    <h2 class="text-2xl font-playfair text-secondary-brown mb-6 border-b pb-2">Your Order</h2>
+                    <div id="checkout-order-summary-items" class="space-y-3 mb-4 max-h-60 overflow-y-auto">
+                        <p id="checkout-cart-empty-msg" class="text-gray-500 text-sm">Your cart is empty.</p>
+                    </div>
+                    <div class="space-y-2 mb-4 pt-4 border-t">
+                        <div class="flex justify-between text-gray-700">
+                            <span>Subtotal:</span>
+                            <span id="checkout-subtotal">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-700">
+                            <span>Shipping:</span>
+                            <span id="checkout-shipping">₹0.00</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between font-bold text-xl text-secondary-brown mt-3 pt-3 border-t">
+                        <span>Total:</span>
+                        <span id="checkout-total">₹0.00</span>
+                    </div>
+                    <button type="submit" form="checkoutForm" id="placeOrderButton" class="w-full mt-6 bg-secondary-brown hover-bg-secondary-brown-dark text-white font-semibold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
+                        Place Order
+                    </button>
+                    <p class="text-xs text-gray-500 mt-3 text-center">By placing your order, you agree to our <a href="#" class="underline hover:text-secondary-brown">Terms & Conditions</a> and <a href="#" class="underline hover:text-secondary-brown">Privacy Policy</a>.</p>
+                </div>
+            </div>
+        </div>
+        <div id="notification-area" class="fixed bottom-5 right-5 z-[100]"></div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4>
+                    <p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li>
+                        <li><a href="about.html" class="hover:text-white">Our Story</a></li>
+                        <li><a href="faq.html" class="hover:text-white">FAQs</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart-logic.js"></script>
+    <script>
+        // --- DOM Elements for Checkout Page ---
+        const checkoutForm = document.getElementById('checkoutForm');
+        const placeOrderButton = document.getElementById('placeOrderButton');
+        const fullNameInput = document.getElementById('fullName');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const addressInput = document.getElementById('address');
+        const cityInput = document.getElementById('city');
+        const pincodeInput = document.getElementById('pincode');
+        const deliveryNotesInput = document.getElementById('deliveryNotes');
+        const fullNameError = document.getElementById('fullNameError');
+        const emailError = document.getElementById('emailError');
+        const phoneError = document.getElementById('phoneError');
+        const addressError = document.getElementById('addressError');
+        const cityError = document.getElementById('cityError');
+        const pincodeError = document.getElementById('pincodeError');
+        const paymentMethodError = document.getElementById('paymentMethodError');
+        const checkoutOrderSummaryItems = document.getElementById('checkout-order-summary-items');
+        const checkoutCartEmptyMsg = document.getElementById('checkout-cart-empty-msg');
+        const checkoutSubtotalElem = document.getElementById('checkout-subtotal');
+        const checkoutShippingElem = document.getElementById('checkout-shipping');
+        const checkoutTotalElem = document.getElementById('checkout-total');
+        // Constants for shipping (can be moved to cart-logic.js if shared more broadly)
+        const SHIPPING_COST_CHECKOUT = 50; 
+        const FREE_SHIPPING_THRESHOLD_CHECKOUT = 500;
+
+        // --- Form Validation ---
+        function validateField(inputElement, errorElement, validationFn, errorMessage) {
+            if (!inputElement || !errorElement) return true; // Skip if elements don't exist
+            if (!validationFn(inputElement.value.trim())) {
+                inputElement.classList.add('border-red-500');
+                errorElement.textContent = errorMessage;
+                errorElement.classList.remove('hidden');
+                return false;
+            } else {
+                inputElement.classList.remove('border-red-500');
+                errorElement.classList.add('hidden');
+                return true;
+            }
+        }
+        function validateEmail(email) { const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; return re.test(String(email).toLowerCase()); }
+        function validatePhone(phone) { const re = /^[0-9]{10}$/; return re.test(String(phone)); }
+        function validatePincode(pincode) { const re = /^[0-9]{6}$/; return re.test(String(pincode)); }
+
+        function validateCheckoutForm() {
+            let isValid = true;
+            isValid = validateField(fullNameInput, fullNameError, val => val.length > 0, 'Full name is required.') && isValid;
+            isValid = validateField(emailInput, emailError, validateEmail, 'Please enter a valid email.') && isValid;
+            isValid = validateField(phoneInput, phoneError, validatePhone, 'Please enter a valid 10-digit phone number.') && isValid;
+            isValid = validateField(addressInput, addressError, val => val.length > 0, 'Street address is required.') && isValid;
+            isValid = validateField(cityInput, cityError, val => val.length > 0, 'City is required.') && isValid;
+            isValid = validateField(pincodeInput, pincodeError, validatePincode, 'Please enter a valid 6-digit pincode.') && isValid;
+            
+            const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (!selectedPaymentMethod) {
+                if(paymentMethodError) paymentMethodError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                if(paymentMethodError) paymentMethodError.classList.add('hidden');
+            }
+            return isValid;
+        }
+
+        // --- Populate Order Summary ---
+        function populateCheckoutOrderSummary() {
+            const cart = getSharedCart(); 
+            if (checkoutOrderSummaryItems) checkoutOrderSummaryItems.innerHTML = ''; 
+            
+            if (Object.keys(cart).length === 0) {
+                if (checkoutCartEmptyMsg) checkoutCartEmptyMsg.classList.remove('hidden');
+                if (placeOrderButton) placeOrderButton.disabled = true;
+                updateCheckoutPageTotals(0);
+                return;
+            }
+
+            if (checkoutCartEmptyMsg) checkoutCartEmptyMsg.classList.add('hidden');
+            if (placeOrderButton) placeOrderButton.disabled = false;
+
+            let subtotal = 0;
+            Object.values(cart).forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex justify-between items-center text-sm py-2 border-b border-gray-200 last:border-b-0';
+                itemElement.innerHTML = `
+                    <div class="flex items-center">
+                        <img src="${item.imageUrl || 'https://placehold.co/50x40/FFFDD0/7B3F00?text=C'}" alt="${item.name}" class="w-10 h-8 object-cover rounded mr-2">
+                        <div>
+                            <p class="font-medium text-gray-700">${item.name}</p>
+                            <p class="text-xs text-gray-500">Qty: ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">₹${(item.price * item.quantity).toFixed(2)}</p>
+                `;
+                if (checkoutOrderSummaryItems) checkoutOrderSummaryItems.appendChild(itemElement);
+                subtotal += item.price * item.quantity;
+            });
+            updateCheckoutPageTotals(subtotal);
+        }
+
+        function updateCheckoutPageTotals(subtotal) {
+            let shipping = 0;
+            if (subtotal > 0 && subtotal < FREE_SHIPPING_THRESHOLD_CHECKOUT) {
+                shipping = SHIPPING_COST_CHECKOUT;
+            }
+            const total = subtotal + shipping;
+
+            if (checkoutSubtotalElem) checkoutSubtotalElem.textContent = `₹${subtotal.toFixed(2)}`;
+            if (checkoutShippingElem) checkoutShippingElem.textContent = `₹${shipping.toFixed(2)}`;
+            if (checkoutTotalElem) checkoutTotalElem.textContent = `₹${total.toFixed(2)}`;
+        }
+
+        // --- Handle Order Placement ---
+        async function handlePlaceOrder(event) {
+            event.preventDefault(); 
+            if (!validateCheckoutForm()) {
+                if (typeof showSharedNotification === 'function') showSharedNotification('Please correct the errors in the form.', 'error');
+                return;
+            }
+
+            if (placeOrderButton) {
+                placeOrderButton.disabled = true;
+                placeOrderButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Placing Order...';
+            }
+
+            const cart = getSharedCart();
+            if (Object.keys(cart).length === 0) {
+                if (typeof showSharedNotification === 'function') showSharedNotification('Your cart is empty. Please add items to proceed.', 'error');
+                if (placeOrderButton) {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Place Order';
+                }
+                return;
+            }
+
+            const shippingInfo = {
+                fullName: fullNameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                address: addressInput.value.trim(),
+                city: cityInput.value.trim(),
+                pincode: pincodeInput.value.trim(),
+                deliveryNotes: deliveryNotesInput ? deliveryNotesInput.value.trim() : ""
+            };
+            const paymentMethodRadio = document.querySelector('input[name="paymentMethod"]:checked');
+            const paymentMethod = paymentMethodRadio ? paymentMethodRadio.value : null;
+            
+            const cartItemsForBackend = Object.values(cart).map(item => ({
+                productId: item.id,
+                name: item.name, // Sending name for easier logging on backend for now
+                quantity: item.quantity,
+                priceAtPurchase: item.price 
+            }));
+
+            try {
+                const apiUrl = `${typeof API_BASE_URL_CART !== 'undefined' ? API_BASE_URL_CART : 'http://localhost:3001/api'}/orders`;
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        shippingInfo,
+                        paymentMethod,
+                        cartItems: cartItemsForBackend
+                    })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    if (typeof showSharedNotification === 'function') showSharedNotification(`Order placed successfully! Order ID: ${result.orderId}`, 'success');
+                    localStorage.removeItem(LOCAL_STORAGE_CART_KEY_SHARED); 
+                    if (typeof updateSharedCartCountDisplay === 'function') updateSharedCartCountDisplay();
+                    window.location.href = `order-confirmation.html?orderId=${result.orderId}`; 
+                } else {
+                    if (typeof showSharedNotification === 'function') showSharedNotification(result.message || 'Failed to place order. Please try again.', 'error');
+                    if (placeOrderButton) {
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Place Order';
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error placing order:', error);
+                if (typeof showSharedNotification === 'function') showSharedNotification('An error occurred while placing your order. Please try again.', 'error');
+                if (placeOrderButton) {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Place Order';
+                }
+            }
+        }
+
+        // --- Initialize Page ---
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateSharedCartCountDisplay === 'function') {
+                updateSharedCartCountDisplay(); 
+            }
+            populateCheckoutOrderSummary();
+
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', handlePlaceOrder);
+            }
+            
+            const inputsToValidate = [
+                {el: fullNameInput, errEl: fullNameError, fn: val => val.length > 0, msg: 'Full name is required.'},
+                {el: emailInput, errEl: emailError, fn: validateEmail, msg: 'Please enter a valid email.'},
+                {el: phoneInput, errEl: phoneError, fn: validatePhone, msg: 'Please enter a valid 10-digit phone number.'},
+                {el: addressInput, errEl: addressError, fn: val => val.length > 0, msg: 'Street address is required.'},
+                {el: cityInput, errEl: cityError, fn: val => val.length > 0, msg: 'City is required.'},
+                {el: pincodeInput, errEl: pincodeError, fn: validatePincode, msg: 'Please enter a valid 6-digit pincode.'}
+            ];
+            inputsToValidate.forEach(item => {
+                if(item.el) item.el.addEventListener('blur', () => validateField(item.el, item.errEl, item.fn, item.msg));
+            });
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = mobileMenu.querySelectorAll('a');
+            if (mobileMenuButton && mobileMenu && mobileMenuCloseButton) {
+                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-closed'); mobileMenu.classList.add('menu-open'); });
+                mobileMenuCloseButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); });
+                navLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); }); });
+            }
+        });
+    </script>
+</body>
+</html>

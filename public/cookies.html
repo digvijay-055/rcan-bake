@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Cookies - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        .cookie-card img { transition: transform 0.3s ease-in-out; }
+        .cookie-card:hover img { transform: scale(1.05); }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+        .out-of-stock-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; text-align: center; z-index: 5; pointer-events: none; }
+        .out-of-stock-text { background-color: rgba(0,0,0,0.6); color: white; padding: 8px 12px; border-radius: 6px; font-weight: bold; }
+        .image-container { position: relative; display: block; }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown">Home</a>
+                    <a href="cookies.html" class="text-secondary-brown font-semibold">Our Cookies</a>
+                    <a href="about.html" class="text-gray-700 hover:text-secondary-brown">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown">Contact</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-secondary-brown">
+                        <i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav">(0)</span>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8">
+                 <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button>
+            </div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-secondary-brown font-semibold py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="mb-8">
+            <nav class="text-sm" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center"><a href="index.html" class="text-gray-600 hover:text-secondary-brown">Home</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li>
+                    <li class="text-secondary-brown">Our Cookies</li>
+                </ol>
+            </nav>
+        </div>
+        <h1 class="text-4xl font-playfair text-center text-secondary-brown mb-12">Our Delicious Cookies</h1>
+        <div class="mb-10 p-4 bg-white rounded-lg shadow">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <label for="sort-by" class="mr-2 text-gray-700">Sort by:</label>
+                    <select id="sort-by" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-brown">
+                        <option value="popularity">Popularity</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="price_desc">Price: High to Low</option>
+                        <option value="name_asc">Name: A-Z</option>
+                        <option value="name_desc">Name: Z-A</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+                <p id="product-count-info" class="text-gray-600">Loading products...</p>
+            </div>
+        </div>
+        <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <p id="loading-indicator" class="col-span-full text-center text-gray-500 py-8"><i class="fas fa-spinner fa-spin fa-2x text-secondary-brown"></i><br>Fetching fresh cookies...</p>
+            <div id="error-message-area" class="col-span-full text-center text-red-500 py-8 hidden"></div>
+        </div>
+        <div id="notification-area" class="fixed bottom-5 right-5 z-[100]"></div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div><h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4><p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li><li><a href="about.html" class="hover:text-white">Our Story</a></li><li><a href="faq.html" class="hover:text-white">FAQs</a></li><li><a href="contact.html" class="hover:text-white">Contact Us</a></li></ul></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li><li><a href="terms-conditions.html" class="hover:text-white">Terms & Conditions</a></li><li><a href="shipping-returns.html" class="hover:text-white">Shipping & Returns</a></li></ul></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4><div class="flex space-x-4"><a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a><a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a></div></div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm"><p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="cart-logic.js"></script>
+    <script>
+        const productGrid = document.getElementById('product-grid');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const productCountInfo = document.getElementById('product-count-info');
+        const errorMessageArea = document.getElementById('error-message-area');
+        const sortBySelect = document.getElementById('sort-by');
+        let allFetchedProducts = [];
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-lg overflow-hidden cookie-card flex flex-col';
+            const isOutOfStock = !product.stockQuantity || product.stockQuantity <= 0;
+
+            const imageLinkContainer = document.createElement('a');
+            imageLinkContainer.href = `cookie-detail.html?id=${product.id}`; // product.id is custom_id
+            imageLinkContainer.className = 'image-container block';
+            const img = document.createElement('img');
+            img.src = product.imageUrl || `https://placehold.co/600x400/FFFDD0/7B3F00?text=${encodeURIComponent(product.name)}`;
+            img.alt = product.name;
+            img.className = 'w-full h-64 object-cover';
+            if (isOutOfStock) img.classList.add('opacity-60');
+            imageLinkContainer.appendChild(img);
+            if (isOutOfStock) {
+                const overlay = document.createElement('div');
+                overlay.className = 'out-of-stock-overlay';
+                overlay.innerHTML = '<span class="out-of-stock-text">OUT OF STOCK</span>';
+                imageLinkContainer.appendChild(overlay);
+            }
+            card.appendChild(imageLinkContainer);
+
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'p-6 flex flex-col flex-grow';
+            const nameLink = document.createElement('a');
+            nameLink.href = `cookie-detail.html?id=${product.id}`;
+            nameLink.className = 'hover:text-secondary-brown';
+            nameLink.innerHTML = `<h3 class="text-xl font-semibold font-playfair text-gray-800 mb-2 truncate">${product.name}</h3>`;
+            infoDiv.appendChild(nameLink);
+            infoDiv.innerHTML += `<p class="text-gray-600 text-sm mb-3 h-16 overflow-hidden text-ellipsis">${product.description ? (product.description.substring(0, 100) + (product.description.length > 100 ? '...' : '')) : 'No description.'}</p>`;
+            infoDiv.innerHTML += `<p class="text-lg font-semibold text-secondary-brown mb-4">₹${parseFloat(product.price).toFixed(2)} (${product.priceUnit || 'each'})</p>`;
+            
+            const addToCartButton = document.createElement('button');
+            addToCartButton.className = 'block w-full text-center bg-secondary-brown hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-auto';
+            if (isOutOfStock) {
+                addToCartButton.disabled = true;
+                addToCartButton.textContent = 'Out of Stock';
+            } else {
+                addToCartButton.innerHTML = '<i class="fas fa-cart-plus mr-2"></i>Add to Cart';
+                addToCartButton.onclick = () => {
+                    if (typeof addItemToSharedCart === 'function') addItemToSharedCart(product, 1);
+                    else console.error('addItemToSharedCart function not found.');
+                };
+            }
+            infoDiv.appendChild(addToCartButton);
+            card.appendChild(infoDiv);
+            return card;
+        }
+
+        function displayProducts(productsToDisplay) {
+            if (!productGrid || !productCountInfo || !errorMessageArea) return;
+            productGrid.innerHTML = ''; 
+            errorMessageArea.classList.add('hidden');
+            if (productsToDisplay.length === 0) {
+                productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-8">No cookies found. Check back soon!</p>';
+                productCountInfo.textContent = '0 results found.';
+                return;
+            }
+            productsToDisplay.forEach(product => {
+                if (!product.id) { console.warn("Product missing 'id':", product); return; }
+                productGrid.appendChild(createProductCard(product));
+            });
+            productCountInfo.textContent = `Showing ${productsToDisplay.length} of ${allFetchedProducts.length} results.`;
+        }
+
+        function sortProducts(products, sortBy) {
+            let sorted = [...products];
+            switch (sortBy) {
+                case 'price_asc': sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)); break;
+                case 'price_desc': sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price)); break;
+                case 'name_asc': sorted.sort((a, b) => a.name.localeCompare(b.name)); break;
+                case 'name_desc': sorted.sort((a, b) => b.name.localeCompare(a.name)); break;
+                case 'newest': sorted.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)); break;
+            }
+            return sorted;
+        }
+
+        async function fetchProducts() {
+            if (loadingIndicator) loadingIndicator.classList.remove('hidden');
+            if (productGrid) productGrid.innerHTML = ''; 
+            if (errorMessageArea) errorMessageArea.classList.add('hidden');
+
+            try {
+                if (typeof API_BASE_URL_CART === 'undefined' || API_BASE_URL_CART.includes('YOUR_LIVE_BACKEND_API_URL_HERE')) {
+                     throw new Error("API_BASE_URL_CART is not configured correctly in cart-logic.js. Please update it with your live backend URL.");
+                }
+                const response = await fetch(`${API_BASE_URL_CART}/products`);
+                if (!response.ok) {
+                    let errorText = `HTTP error! Status: ${response.status}`;
+                    try { const errorData = await response.json(); errorText = errorData.message || errorText; } catch (e) {}
+                    throw new Error(errorText);
+                }
+                const products = await response.json();
+                allFetchedProducts = products;
+                displayProducts(sortProducts(allFetchedProducts, sortBySelect.value));
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+                if (productGrid) productGrid.innerHTML = '';
+                if (errorMessageArea) {
+                    errorMessageArea.textContent = `Could not load cookies: ${error.message}. Please check configuration and server status.`;
+                    errorMessageArea.classList.remove('hidden');
+                }
+                if (productCountInfo) productCountInfo.textContent = 'Error loading products.';
+            } finally {
+                if (loadingIndicator) loadingIndicator.classList.add('hidden');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateSharedCartCountDisplay === 'function') updateSharedCartCountDisplay();
+            else console.warn("updateSharedCartCountDisplay function not found.");
+            
+            fetchProducts();
+
+            if (sortBySelect) {
+                sortBySelect.addEventListener('change', () => displayProducts(sortProducts(allFetchedProducts, sortBySelect.value)));
+            }
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const mb = document.getElementById('mobile-menu-button'), mcb = document.getElementById('mobile-menu-close-button'), mm = document.getElementById('mobile-menu');
+            if (mb && mm && mcb) {
+                mb.addEventListener('click', () => { mm.classList.remove('menu-closed'); mm.classList.add('menu-open'); });
+                mcb.addEventListener('click', () => { mm.classList.remove('menu-open'); mm.classList.add('menu-closed'); });
+                mm.querySelectorAll('a').forEach(l => l.addEventListener('click', () => { mm.classList.remove('menu-open'); mm.classList.add('menu-closed'); }));
+            }
+        });
+    </script>
+</body>
+</html>

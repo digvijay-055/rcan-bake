@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed! - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown">Home</a>
+                    <a href="cookies.html" class="text-gray-700 hover:text-secondary-brown">Our Cookies</a>
+                    <a href="about.html" class="text-gray-700 hover:text-secondary-brown">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown">Contact</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-secondary-brown"><i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav">(0)</span></a>
+                </div>
+                <div class="md:hidden"><button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8"><a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a><button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button></div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 sm:px-6 py-16 text-center">
+        <div class="bg-white p-8 md:p-12 rounded-lg shadow-xl max-w-2xl mx-auto">
+            <div class="mb-8"><i class="fas fa-check-circle fa-5x text-green-500"></i></div>
+            <h1 class="text-3xl sm:text-4xl font-playfair text-secondary-brown mb-4">Thank You For Your Order!</h1>
+            <p class="text-gray-700 text-lg mb-6">Your cookies are on their way to being baked with love!</p>
+            <div class="bg-primary-beige p-6 rounded-lg mb-8">
+                <p class="text-gray-800 font-semibold text-lg">Your Order ID is:</p>
+                <p id="orderIdDisplay" class="text-2xl text-secondary-brown font-bold mt-2 break-all">Loading...</p>
+            </div>
+            <p class="text-gray-600 mb-4">You will receive an email confirmation shortly (once email functionality is fully implemented).</p>
+            <p class="text-gray-600 mb-8">If you have any questions, please <a href="contact.html" class="text-secondary-brown hover:underline font-semibold">contact us</a>.</p>
+            <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:space-x-4">
+                <a href="cookies.html" class="w-full sm:w-auto inline-block bg-secondary-brown hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">Continue Shopping</a>
+                <a href="index.html" class="w-full sm:w-auto inline-block border-2 border-secondary-brown text-secondary-brown hover:bg-secondary-brown hover:text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">Back to Homepage</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div><h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4><p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li><li><a href="about.html" class="hover:text-white">Our Story</a></li><li><a href="faq.html" class="hover:text-white">FAQs</a></li><li><a href="contact.html" class="hover:text-white">Contact Us</a></li></ul></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li><li><a href="terms-conditions.html" class="hover:text-white">Terms & Conditions</a></li><li><a href="shipping-returns.html" class="hover:text-white">Shipping & Returns</a></li></ul></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4><div class="flex space-x-4"><a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a><a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a></div></div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm"><p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="cart-logic.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderIdDisplay = document.getElementById('orderIdDisplay');
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('orderId');
+            const paymentId = params.get('paymentId'); // If you pass payment ID from Razorpay success
+
+            if (orderId && orderIdDisplay) {
+                orderIdDisplay.textContent = orderId;
+                // You can also display paymentId if it exists
+                // if (paymentId) {
+                //     const paymentIdElem = document.createElement('p');
+                //     paymentIdElem.className = 'text-sm text-gray-500 mt-1';
+                //     paymentIdElem.textContent = `Payment ID: ${paymentId}`;
+                //     orderIdDisplay.parentNode.appendChild(paymentIdElem);
+                // }
+            } else if (orderIdDisplay) {
+                orderIdDisplay.textContent = "N/A";
+                orderIdDisplay.classList.add('text-red-500');
+            }
+
+            // Cart should ideally be cleared by checkout.html upon successful order submission to backend
+            // But as a fallback, or if redirected here directly, ensure cart UI is updated.
+            if (typeof updateSharedCartCountDisplay === 'function') {
+                updateSharedCartCountDisplay(); 
+            }
+            // If order is confirmed, the cart in localStorage should have been cleared.
+            // If not, you might want to clear it here, but it's better handled in checkout.js
+            // localStorage.removeItem(LOCAL_STORAGE_CART_KEY_SHARED); // Example, but better in checkout success
+            // updateSharedCartCountDisplay();
+
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const mb = document.getElementById('mobile-menu-button'), mcb = document.getElementById('mobile-menu-close-button'), mm = document.getElementById('mobile-menu');
+            if (mb && mm && mcb) {
+                mb.addEventListener('click', () => { mm.classList.remove('menu-closed'); mm.classList.add('menu-open'); });
+                mcb.addEventListener('click', () => { mm.classList.remove('menu-open'); mm.classList.add('menu-closed'); });
+                mm.querySelectorAll('a').forEach(l => l.addEventListener('click', () => { mm.classList.remove('menu-open'); mm.classList.add('menu-closed'); }));
+            }
+        });
+    </script>
+</body>
+</html>

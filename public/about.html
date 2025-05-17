@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-primary-beige { color: #F5F5DC; }
+        .bg-secondary-brown { background-color: #7B3F00; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        .border-secondary-brown { border-color: #7B3F00; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Home</a>
+                    <a href="cookies.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Our Cookies</a>
+                    <a href="about.html" class="text-secondary-brown font-semibold transition duration-300">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">Contact</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-secondary-brown transition duration-300">
+                        <i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav" class="ml-1">(0)</span>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8">
+                 <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button>
+            </div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-secondary-brown font-semibold py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="mb-8">
+            <nav class="text-sm" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center"><a href="index.html" class="text-gray-600 hover:text-secondary-brown">Home</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li>
+                    <li class="text-secondary-brown">Our Story</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="bg-white p-8 md:p-12 rounded-lg shadow-lg">
+            <h1 class="text-4xl md:text-5xl font-playfair text-center text-secondary-brown mb-10">The Heart of Rcan Bakes</h1>
+
+            <div class="md:flex md:items-center md:space-x-12 mb-12">
+                <div class="md:w-1/2 mb-6 md:mb-0">
+                    <img src="https://placehold.co/600x450/FFFDD0/7B3F00?text=Baking+with+Love" alt="Baking with love at Rcan Bakes - Replace with real image" class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-2xl font-playfair text-secondary-brown mb-4">It Started with a Passion...</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Rcan Bakes was born in a cozy Gurugram kitchen, fueled by a lifelong love for baking and a dream to share the simple joy of a perfectly crafted cookie. Our founder, [Your Name/Founder's Name], believes that the best memories are often made around food, and what better way to create those moments than with a warm, delicious, homemade cookie?
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        What began as a hobby, baking for friends and family, quickly blossomed into a mission: to bring artisanal, high-quality baked goods to our community, made with the same care and attention you'd find in your own home. We are passionate about creating premium cookies that bring a smile to your face.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h2 class="text-3xl font-playfair text-center text-secondary-brown mb-8">Our Philosophy: Freshness, Quality, and a Dash of Magic</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6">
+                        <div class="text-secondary-brown text-5xl mb-4"><i class="fas fa-seedling"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Finest Ingredients</h3>
+                        <p class="text-gray-600">We meticulously source premium ingredients – from rich butter and fine chocolate to fresh nuts and spices – ensuring every cookie is a burst of flavor and quality you can taste.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-secondary-brown text-5xl mb-4"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Baked with Care</h3>
+                        <p class="text-gray-600">Each batch is lovingly prepared and baked fresh daily in small quantities to guarantee maximum freshness and that signature homemade taste that sets us apart.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-secondary-brown text-5xl mb-4"><i class="fas fa-smile-beam"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Delivering Joy</h3>
+                        <p class="text-gray-600">Our ultimate goal is to bring a smile to your face with every bite. We believe our cookies are more than just a treat; they're a small moment of happiness, crafted just for you.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:flex md:items-center md:space-x-12">
+                 <div class="md:w-1/2 order-last md:order-first">
+                    <h2 class="text-2xl font-playfair text-secondary-brown mb-4">From Our Kitchen in Gurugram to Yours</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Located in the heart of Gurugram, Rcan Bakes is proud to be your local home bakery. We're passionate about connecting with our customers and being a part of your special occasions, or simply your everyday sweet cravings. 
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        As we grow, our commitment to quality and the personal touch remains unwavering. We're excited for the future and plan to expand our offerings to include other baked delights like breads and cakes, all crafted with the same dedication. Thank you for being a part of the Rcan Bakes journey!
+                    </p>
+                </div>
+                <div class="md:w-1/2 mb-6 md:mb-0 order-first md:order-last">
+                    <img src="https://placehold.co/600x450/FFFDD0/7B3F00?text=Our+Delicious+Cookies" alt="Assortment of Rcan Bakes cookies - Replace with real image" class="rounded-lg shadow-md w-full">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4>
+                    <p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li>
+                        <li><a href="about.html" class="hover:text-white">Our Story</a></li>
+                        <li><a href="faq.html" class="hover:text-white">FAQs</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="cart-logic.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a');
+        if (mobileMenuButton && mobileMenu && mobileMenuCloseButton) {
+            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-closed'); mobileMenu.classList.add('menu-open'); });
+            mobileMenuCloseButton.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); });
+            navLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('menu-open'); mobileMenu.classList.add('menu-closed'); }); });
+        }
+        // Initialize cart count display on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateSharedCartCountDisplay === 'function') {
+                updateSharedCartCountDisplay();
+            }
+        });
+    </script>
+</body>
+</html>

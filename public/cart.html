@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart - Rcan Bakes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #4A5568; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .bg-primary-beige { background-color: #F5F5DC; }
+        .text-secondary-brown { color: #7B3F00; }
+        .hover-bg-secondary-brown-dark:hover { background-color: #653000; }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0%); }
+        .menu-closed { transform: translateX(-100%); }
+        input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type='number'] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="bg-primary-beige">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-secondary-brown">Home</a>
+                    <a href="cookies.html" class="text-gray-700 hover:text-secondary-brown">Our Cookies</a>
+                    <a href="about.html" class="text-gray-700 hover:text-secondary-brown">Our Story</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-secondary-brown">Contact</a>
+                    <a href="cart.html" class="text-secondary-brown font-semibold">
+                        <i class="fas fa-shopping-cart"></i> <span id="cart-item-count-nav">(0)</span>
+                    </a>
+                </div>
+                <div class="md:hidden"><button id="mobile-menu-button" class="text-gray-700 focus:outline-none"><i class="fas fa-bars fa-lg"></i></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden fixed inset-0 bg-white/90 backdrop-blur-sm menu-closed p-6 space-y-4 z-40">
+            <div class="flex justify-between items-center mb-8"> <a href="index.html" class="text-2xl font-playfair text-secondary-brown font-bold">Rcan Bakes</a><button id="mobile-menu-close-button" class="text-gray-700 focus:outline-none"><i class="fas fa-times fa-lg"></i></button></div>
+            <a href="index.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Home</a>
+            <a href="cookies.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Cookies</a>
+            <a href="about.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Our Story</a>
+            <a href="contact.html" class="block text-gray-700 hover:text-secondary-brown py-2 text-lg">Contact</a>
+            <a href="cart.html" class="block text-secondary-brown font-semibold py-2 text-lg"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-item-count-mobile-nav">0</span>)</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="mb-8"><nav class="text-sm" aria-label="Breadcrumb"><ol class="list-none p-0 inline-flex"><li class="flex items-center"><a href="index.html" class="text-gray-600 hover:text-secondary-brown">Home</a><i class="fas fa-chevron-right mx-2 text-xs text-gray-500"></i></li><li class="text-secondary-brown">Shopping Cart</li></ol></nav></div>
+        <h1 class="text-4xl font-playfair text-center text-secondary-brown mb-10">Your Shopping Cart</h1>
+        <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="py-3 px-2 md:px-4 font-semibold text-gray-700 hidden md:table-cell">Product</th>
+                            <th class="py-3 px-2 md:px-4 font-semibold text-gray-700 md:hidden">Details</th>
+                            <th class="py-3 px-2 md:px-4 font-semibold text-gray-700 text-center">Quantity</th>
+                            <th class="py-3 px-2 md:px-4 font-semibold text-gray-700 text-right">Total</th>
+                            <th class="py-3 px-1 md:px-4 font-semibold text-gray-700 text-center">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items-tbody">
+                        </tbody>
+                </table>
+            </div>
+            <div id="cart-summary-section" class="mt-8 md:flex md:justify-between items-start hidden">
+                <div class="md:w-2/5 lg:w-1/3 ml-auto"> <div class="p-4 bg-gray-50 rounded-lg border">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Order Summary</h3>
+                        <div class="flex justify-between mb-1 text-gray-700"><span>Subtotal:</span><span id="cart-subtotal">₹0.00</span></div>
+                        <div class="flex justify-between mb-1 text-gray-700"><span>Shipping:</span><span id="cart-shipping">₹0.00</span></div>
+                        <div class="flex justify-between font-bold text-xl text-secondary-brown mt-2 pt-2 border-t"><span>Total:</span><span id="cart-total">₹0.00</span></div>
+                    </div>
+                    <a href="checkout.html" id="proceed-to-checkout-btn" class="block w-full mt-4 bg-secondary-brown hover:bg-gray-700 text-white text-center font-semibold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-md">Proceed to Checkout</a>
+                    <a href="cookies.html" class="block w-full mt-3 text-center text-secondary-brown hover:underline">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+        <div id="notification-area" class="fixed bottom-5 right-5 z-[100]"></div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div><h4 class="text-xl font-playfair text-white mb-4">Rcan Bakes</h4><p class="text-sm">Premium homemade cookies, baked with love in Gurugram, India.</p></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="cookies.html" class="hover:text-white">Our Cookies</a></li><li><a href="about.html" class="hover:text-white">Our Story</a></li><li><a href="faq.html" class="hover:text-white">FAQs</a></li><li><a href="contact.html" class="hover:text-white">Contact Us</a></li></ul></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li><li><a href="terms-conditions.html" class="hover:text-white">Terms & Conditions</a></li><li><a href="shipping-returns.html" class="hover:text-white">Shipping & Returns</a></li></ul></div>
+                <div><h4 class="text-lg font-semibold text-white mb-4">Connect With Us</h4><div class="flex space-x-4"><a href="#" aria-label="Facebook" class="hover:text-white"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram" class="hover:text-white"><i class="fab fa-instagram"></i></a><a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a></div></div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm"><p>© <span id="currentYear"></span> Rcan Bakes. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="cart-logic.js"></script>
+    <script>
+        const cartItemsTbody = document.getElementById('cart-items-tbody');
+        const cartSubtotalElem = document.getElementById('cart-subtotal');
+        const cartShippingElem = document.getElementById('cart-shipping');
+        const cartTotalElem = document.getElementById('cart-total');
+        const cartSummarySection = document.getElementById('cart-summary-section');
+        const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
+        
+        const SHIPPING_COST = 50; 
+        const FREE_SHIPPING_THRESHOLD = 500;
+
+        function renderCartPage() {
+            const cart = getSharedCart(); 
+            if (!cartItemsTbody) return;
+            cartItemsTbody.innerHTML = '';
+
+            if (Object.keys(cart).length === 0) {
+                cartItemsTbody.innerHTML = `<tr id="empty-cart-row"><td colspan="5" class="py-8 text-center text-gray-500">Your cart is empty. <a href="cookies.html" class="text-secondary-brown hover:underline">Start shopping!</a></td></tr>`;
+                if (cartSummarySection) cartSummarySection.classList.add('hidden');
+                if (proceedToCheckoutBtn) {
+                    proceedToCheckoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    proceedToCheckoutBtn.href = "javascript:void(0);"; // Prevent navigation
+                }
+                updateCartPageTotals(0); 
+                return;
+            }
+
+            if (cartSummarySection) cartSummarySection.classList.remove('hidden');
+            if (proceedToCheckoutBtn) {
+                 proceedToCheckoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                 proceedToCheckoutBtn.href = "checkout.html";
+            }
+
+            let subtotal = 0;
+            Object.values(cart).forEach(item => { 
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                const row = document.createElement('tr');
+                row.className = 'border-b hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="py-4 px-2 md:px-4 hidden md:table-cell">
+                        <div class="flex items-center">
+                            <img src="${item.imageUrl || 'https://placehold.co/100x80/FFFDD0/7B3F00?text=Cookie'}" alt="${item.name}" class="w-20 h-16 object-cover rounded mr-4">
+                            <div>
+                                <a href="cookie-detail.html?id=${item.id}" class="font-semibold text-gray-800 hover:text-secondary-brown">${item.name}</a>
+                                <p class="text-sm text-gray-500">Price: ₹${item.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 px-2 md:px-4 md:hidden">
+                        <div class="flex items-center">
+                            <img src="${item.imageUrl || 'https://placehold.co/80x60/FFFDD0/7B3F00?text=Cookie'}" alt="${item.name}" class="w-16 h-12 object-cover rounded mr-3">
+                            <div>
+                                <a href="cookie-detail.html?id=${item.id}" class="font-semibold text-sm text-gray-800 hover:text-secondary-brown">${item.name}</a>
+                                <p class="text-xs text-gray-500">₹${item.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 px-2 md:px-4">
+                        <div class="flex items-center justify-center">
+                            <button data-id="${item.id}" class="cart-quantity-decrease px-2 py-0.5 border border-gray-300 rounded-l-md hover:bg-gray-100 text-sm">-</button>
+                            <input type="number" value="${item.quantity}" min="1" data-id="${item.id}" class="cart-quantity-input w-10 text-center border-t border-b border-gray-300 focus:outline-none text-sm appearance-none">
+                            <button data-id="${item.id}" class="cart-quantity-increase px-2 py-0.5 border border-gray-300 rounded-r-md hover:bg-gray-100 text-sm">+</button>
+                        </div>
+                    </td>
+                    <td class="py-4 px-2 md:px-4 text-right font-semibold text-gray-800">₹${itemTotal.toFixed(2)}</td>
+                    <td class="py-4 px-1 md:px-4 text-center">
+                        <button data-id="${item.id}" class="cart-remove-item text-red-500 hover:text-red-700"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                `;
+                cartItemsTbody.appendChild(row);
+            });
+            updateCartPageTotals(subtotal);
+            attachCartPageActionListeners();
+        }
+
+        function updateCartPageTotals(subtotal) {
+            let shipping = (subtotal > 0 && subtotal < FREE_SHIPPING_THRESHOLD) ? SHIPPING_COST : 0;
+            const total = subtotal + shipping;
+            if (cartSubtotalElem) cartSubtotalElem.textContent = `₹${subtotal.toFixed(2)}`;
+            if (cartShippingElem) cartShippingElem.textContent = `₹${shipping.toFixed(2)}`;
+            if (cartTotalElem) cartTotalElem.textContent = `₹${total.toFixed(2)}`;
+        }
+        
+        function updateCartItemQuantityOnPage(productId, newQuantity) {
+            const cart = getSharedCart();
+            if (cart[productId]) {
+                if (newQuantity <= 0) {
+                    delete cart[productId];
+                    showSharedNotification(`${cart[productId].name || 'Item'} removed from cart.`, 'info');
+                } else {
+                    // Here, we are not re-validating stock with backend on quantity change on cart page.
+                    // Stock validation primarily happens on initial add via addItemToSharedCart.
+                    // Final stock check will happen at checkout.
+                    cart[productId].quantity = newQuantity;
+                }
+                saveSharedCart(cart); // This will trigger re-render and nav update
+            }
+        }
+
+        function removeCartItemFromPage(productId) {
+            const cart = getSharedCart();
+            if (cart[productId]) {
+                const productName = cart[productId].name || 'Item';
+                delete cart[productId];
+                saveSharedCart(cart);
+                if (typeof showSharedNotification === 'function') {
+                    showSharedNotification(`${productName} removed from cart.`, 'info');
+                }
+            }
+        }
+
+        function attachCartPageActionListeners() {
+            document.querySelectorAll('.cart-quantity-decrease').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.currentTarget.dataset.id;
+                    const input = document.querySelector(`.cart-quantity-input[data-id="${productId}"]`);
+                    let newQuantity = parseInt(input.value) - 1;
+                    updateCartItemQuantityOnPage(productId, newQuantity); // Will remove if newQuantity <= 0
+                });
+            });
+            document.querySelectorAll('.cart-quantity-increase').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.currentTarget.dataset.id;
+                    const input = document.querySelector(`.cart-quantity-input[data-id="${productId}"]`);
+                    let newQuantity = parseInt(input.value) + 1;
+                    // Consider adding a max quantity check here if product.stockQuantity was stored in cart item
+                    updateCartItemQuantityOnPage(productId, newQuantity);
+                });
+            });
+            document.querySelectorAll('.cart-quantity-input').forEach(input => {
+                input.addEventListener('change', (e) => { 
+                    const productId = e.currentTarget.dataset.id;
+                    let newQuantity = parseInt(e.currentTarget.value);
+                    if (isNaN(newQuantity) || newQuantity < 0) newQuantity = 0; 
+                    updateCartItemQuantityOnPage(productId, newQuantity); // Will remove if newQuantity <= 0
+                });
+            });
+            document.querySelectorAll('.cart-remove-item').forEach(button => {
+                button.addEventListener('click', (e) => removeCartItemFromPage(e.currentTarget.dataset.id));
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateSharedCartCountDisplay === 'function') updateSharedCartCountDisplay();
+            renderCartPage(); 
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const mb = document.getElementById('mobile-menu-button'), mcb = document.getElementById('mobile-menu-close-button'), mm = document.getElementById('mobile-menu');
+            if (mb && mm && mcb) {
+                mb.addEventListener('click', () => { mm.classList.remove('menu-closed'); mm.classList.add('menu-open'); });
+                mcb.addEventListener('click', () => { mm.classList.remove('menu-open'); mm.classList.add('menu-closed'); });
+                mm.querySelectorAll('a').forEach(l => l.addEventListener('click', () => { mm.classList.remove('menu-open'); mm.classList.add('menu-closed'); }));
+            }
+        });
+    </script>
+</body>
+</html>
