@@ -71,6 +71,28 @@ async function testDbConnection() {
 }
 testDbConnection();
 
+async function loadProductsFromDB() {
+    let connection;
+    try {
+        connection = await pool.getConnection();
+        // Fetch products
+        const [products] = await connection.query("SELECT * FROM products");
+
+        // For each product, fetch thumbnails and attach
+        for (const product of products) {
+            product.thumbnails = await getThumbnailsForProduct(product.custom_id, connection);
+        }
+
+        return products;
+    } catch (error) {
+        console.error(`[${new Date().toISOString()}] Error loading products from DB:`, error);
+        return [];
+    } finally {
+        if (connection) connection.release();
+    }
+}
+
+
 // --- (Optional) Database Seeding Function for MySQL ---
 const initialProductsDataForMySQL = [
     { custom_id: "1", name: "Classic Choco-Chip", description: "The timeless favorite, packed with rich chocolate chips and a soft, chewy center. Made with premium butter and Belgian chocolate.", price: 150.00, price_unit: "Box of 6", image_url: "https://placehold.co/600x400/FFFDD0/7B3F00?text=Classic+Choco-Chip", category: "Classic", stock_quantity: 50, ingredients: "All-Purpose Flour, Butter, Brown Sugar, Granulated Sugar, Eggs, Premium Chocolate Chips, Vanilla Extract, Baking Soda, Salt", allergen_info: "Contains Wheat, Eggs, Dairy. May contain traces of nuts.", storage_care: "Store in an airtight container at room temperature for up to 3-4 days. Can be refrigerated for up to a week." },
@@ -405,6 +427,8 @@ app.use((err, req, res, next) => {
 });
 
 // --- 7.  Start Server ---
+let products = []; // Initialize as empty array (or fetch real products before starting server)
+
 app.listen(PORT, () => {
     console.log(`Rcan Bakes backend server running on http://localhost:${PORT}`);
     console.log(`Connected to MySQL DB: ${process.env.DB_NAME} on host ${process.env.DB_HOST}`);
@@ -419,4 +443,7 @@ app.listen(PORT, () => {
     console.log(`  DELETE /api/products/:id (to delete a product)`);
     console.log(`  POST   /api/cart/add`);
     console.log(`  POST   /api/orders`);
+}).catch(err => {
+    console.error(`[${new Date().toISOString()}] Failed to load products before starting server:`, err);
+    process.exit(1);
 });
